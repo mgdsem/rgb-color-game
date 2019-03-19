@@ -1,0 +1,11 @@
+.header {
+    @include flex-center;
+
+    width: 100%;
+    position: relative;
+
+    &__up {
+        background-color: steelblue;
+        height: 7.5rem;
+    }
+}
