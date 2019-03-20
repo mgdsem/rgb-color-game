@@ -13,11 +13,14 @@ class Game extends Component {
         }
     }
 
+    onButtonClick() {
+        console.log('click');
+    }
+
     render() {
-        console.log(this.state.chosenColor);
         return (
             <div>
-                <Header chosenColor={this.state.chosenColor} />
+                <Header chosenColor={this.state.chosenColor} onClick={this.onButtonClick} />
             </div>
         )
     }

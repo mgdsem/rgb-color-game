@@ -1,0 +1,24 @@
+.button {
+    outline: 0;
+    border: none;
+    background-color: white;
+    color: steelblue;
+    font-weight: 600;
+    height: 1.3rem;
+    padding: 0 0.5rem;
+    transition: 0.3s ease;
+
+    &:hover,
+    &:active {
+        background-color: steelblue;
+        color: white;
+    }
+
+    &__colors {
+        margin-right: 7rem;
+    }
+
+    &__easy {
+        margin-right: 0.2rem;
+    }
+}
