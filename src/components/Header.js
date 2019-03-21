@@ -5,8 +5,7 @@ import Button from './Button';
 const Header = ({
     chosenColor,
     onClick,
-}) => {
-    return (
+}) => (
         <div>
             <div className="header__up">
                 <h1>
@@ -22,6 +21,6 @@ const Header = ({
             </div>
         </div>
     )
-}
+
 
 export default Header;

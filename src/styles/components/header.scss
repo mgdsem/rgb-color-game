@@ -5,24 +5,24 @@
         @include flex-center;
 
         position: relative;
-        background-color: steelblue;
-        height: 7.5rem;
-        color: white;
+        background-color: $header-up-color;
+        height: 12rem;
+        color: $header-down-color;
     }
 
     &__title-line {
         text-align: center;
-        font-size: 1.3rem;
+        font-size: 2.5rem;
     }
 
     &__color-line {
-        font-size: 2.5rem;
+        font-size: 4rem;
     }
 
     &__down{
         @include flex-center;
 
         position: relative;
-        background-color: white;
+        background-color: $header-down-color;
     }
 }
