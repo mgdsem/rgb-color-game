@@ -4,7 +4,9 @@ import Button from './Button';
 
 const Header = ({
     chosenColor,
-    onClick,
+    onNewColors,
+    onEasy,
+    onHard
 }) => (
         <div>
             <div className="header__up">
@@ -15,9 +17,10 @@ const Header = ({
                 </h1>
             </div>
             <div className="header__down">
-                <Button additionalClassNames="button__colors" onClick={onClick} children="new colors" />
-                <Button onClick={onClick} additionalClassNames="button__easy" children="easy" />
-                <Button onClick={onClick} children="hard" />
+                <Button additionalClassNames="button__colors" onClick={onNewColors} children="new colors" />
+                <p className="header__middle-text">placeholder</p>
+                <Button onClick={onEasy} additionalClassNames="button__easy" children="easy" />
+                <Button onClick={onHard} children="hard" />
             </div>
         </div>
     )

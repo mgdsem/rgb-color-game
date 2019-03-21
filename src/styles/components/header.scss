@@ -6,13 +6,14 @@
 
         position: relative;
         background-color: $header-up-color;
-        height: 12rem;
+        height: 11rem;
         color: $header-down-color;
+        padding: 0.5rem;
     }
 
     &__title-line {
         text-align: center;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     &__color-line {
@@ -24,5 +25,11 @@
 
         position: relative;
         background-color: $header-down-color;
+    }
+
+    &__middle-text {
+        font-size: 1.1rem;
+        margin-right: 3rem;
+        text-transform: capitalize;
     }
 }

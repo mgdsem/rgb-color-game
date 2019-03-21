@@ -1,0 +1,20 @@
+.colors-wrapper {
+    background-color: $colors-wrapper-color;
+    width: 100%;
+    position: fixed;
+    height: 100vh;
+
+    &__easy-part {
+        @include flex-center;
+        @include height-padding;
+
+        margin-top: 1.5rem;
+    }
+
+    &__hard-part {
+        @include flex-center;
+        @include height-padding;
+
+        margin-top: 0.3rem;
+    }
+}

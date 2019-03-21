@@ -8,14 +8,13 @@
     padding: 0 0.5rem;
     transition: all 0.3s ease;
 
-    &:hover,
-    &:active {
+    &:hover {
         background-color: $header-up-color;
         color: $header-down-color;
     }
 
     &__colors {
-        margin-right: 10rem;
+        margin-right: 3rem;
     }
 
     &__easy {
