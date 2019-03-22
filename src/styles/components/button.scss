@@ -21,3 +21,8 @@
         margin-right: 0.3rem;
     }
 }
+
+.active {
+    background-color: $header-up-color;
+        color: $header-down-color;
+}

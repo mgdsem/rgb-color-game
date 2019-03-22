@@ -3,10 +3,11 @@ import React from 'react';
 const Button = ({
     onClick,
     children,
-    additionalClassNames
+    additionalClassNames,
+    currentMode
 }) => (
         <button
-            className={`button ${additionalClassNames}`}
+            className={`button ${additionalClassNames} ${currentMode === children ? 'active' : ''}`}
             onClick={onClick}
         >
             {children}

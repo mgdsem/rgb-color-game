@@ -6,7 +6,8 @@ const Header = ({
     chosenColor,
     onNewColors,
     onEasy,
-    onHard
+    onHard,
+    currentMode
 }) => (
         <div>
             <div className="header__up">
@@ -19,8 +20,8 @@ const Header = ({
             <div className="header__down">
                 <Button additionalClassNames="button__colors" onClick={onNewColors} children="new colors" />
                 <p className="header__middle-text">placeholder</p>
-                <Button onClick={onEasy} additionalClassNames="button__easy" children="easy" />
-                <Button onClick={onHard} children="hard" />
+                <Button onClick={onEasy} additionalClassNames="button__easy" children="easy" currentMode={currentMode} />
+                <Button onClick={onHard} children="hard" currentMode={currentMode} />
             </div>
         </div>
     )
