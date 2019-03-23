@@ -62,22 +62,31 @@ class Game extends Component {
 
     onCreate3Colors() {
         const slicedArrayOfThreeColors = createArrayOfThreeColors().slice(1);
-        const preparedArrayOfThreeColors = [...slicedArrayOfThreeColors, this.state.chosenColor];
+        const preparedArrayOfThreeColors = [...slicedArrayOfThreeColors.map((color) => color.color), this.state.chosenColor];
         return preparedArrayOfThreeColors;
     }
 
     onCreate6Colors() {
         const slicedArrayOfSixColors = createArrayOfSixColors().slice(1);
-        const preparedArrayOfSixColors = [...slicedArrayOfSixColors, this.state.chosenColor];
+        const preparedArrayOfSixColors = [...slicedArrayOfSixColors.map((color) => color.color), this.state.chosenColor];
         return preparedArrayOfSixColors;
     }
 
     render() {
-        console.log(this.state.arrayFor6Colors);
         return (
             <div>
-                <Header chosenColor={this.state.chosenColor} onNewColors={this.onNewColors} onEasy={this.onEasy} onHard={this.onHard} currentMode={this.state.currentMode} />
-                <ColorsWrapper currentMode={this.state.currentMode} sixColors={this.state.arrayFor6Colors} threeColors={this.state.arrayFor3Colors} />
+                <Header
+                    chosenColor={this.state.chosenColor}
+                    onNewColors={this.onNewColors}
+                    onEasy={this.onEasy}
+                    onHard={this.onHard}
+                    currentMode={this.state.currentMode}
+                />
+                <ColorsWrapper
+                    currentMode={this.state.currentMode}
+                    sixColors={this.state.arrayFor6Colors}
+                    threeColors={this.state.arrayFor3Colors}
+                />
             </div>
         )
     }

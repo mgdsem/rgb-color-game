@@ -77,3 +77,4 @@ const getRandomNumber = () => Math.floor(Math.random() * 255);
 
 const buildColor = () => `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`;
 
+
