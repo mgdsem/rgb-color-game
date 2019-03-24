@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import ColorsWrapper from './ColorsWrapper';
 
-import { createChoosenColorOf3, createChoosenColorOf6, createArrayOfSixColors, createArrayOfThreeColors } from '../helpers/randomArray';
+import { buildColor, createArrayOfSixColors, createArrayOfThreeColors } from '../helpers/randomArray';
 
 class Game extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class Game extends Component {
         this.onCreate6Colors = this.onCreate6Colors.bind(this);
 
         this.state = {
-            chosenColor: createChoosenColorOf6(),
+            chosenColor: '',
             currentMode: 'hard',
             arrayFor3Colors: [],
             arrayFor6Colors: []
@@ -24,52 +24,82 @@ class Game extends Component {
     }
 
     componentDidMount() {
+        const chosenColor = buildColor()
         this.setState({
-            arrayFor3Colors: this.onCreate3Colors(),
-            arrayFor6Colors: this.onCreate6Colors()
+            arrayFor3Colors: this.onCreate3Colors(chosenColor),
+            arrayFor6Colors: this.onCreate6Colors(chosenColor),
+            chosenColor: chosenColor
         })
     }
 
     onNewColors() {
+        const chosenColor = buildColor()
+
         if (this.state.currentMode === 'hard') {
             this.setState({
-                chosenColor: createChoosenColorOf6()
-            });
+                arrayFor6Colors: this.onCreate6Colors(chosenColor),
+                chosenColor: chosenColor
+            })
+        };
 
-        }
         if (this.state.currentMode === 'easy') {
             this.setState({
-                chosenColor: createChoosenColorOf3()
+                arrayFor3Colors: this.onCreate3Colors(chosenColor),
+                chosenColor: chosenColor
             })
         }
     }
 
     onEasy() {
+        const chosenColor = buildColor();
         this.setState({
             currentMode: 'easy',
-            chosenColor: createChoosenColorOf3()
+            chosenColor: chosenColor,
+            arrayFor3Colors: this.onCreate3Colors(chosenColor)
         });
 
     }
 
     onHard() {
+        const chosenColor = buildColor();
         this.setState({
             currentMode: 'hard',
-            chosenColor: createChoosenColorOf6()
+            chosenColor: chosenColor,
+            arrayFor6Colors: this.onCreate6Colors(chosenColor)
         })
 
     }
 
-    onCreate3Colors() {
+    onCreate3Colors(chosenColor) {
         const slicedArrayOfThreeColors = createArrayOfThreeColors().slice(1);
-        const preparedArrayOfThreeColors = [...slicedArrayOfThreeColors.map((color) => color.color), this.state.chosenColor];
-        return preparedArrayOfThreeColors;
+        const preparedArrayOfThreeColors = [...slicedArrayOfThreeColors, chosenColor];
+        const finalColors = this.onFinalColors(preparedArrayOfThreeColors, 3);
+        return finalColors;
     }
 
-    onCreate6Colors() {
+    onCreate6Colors(chosenColor) {
         const slicedArrayOfSixColors = createArrayOfSixColors().slice(1);
-        const preparedArrayOfSixColors = [...slicedArrayOfSixColors.map((color) => color.color), this.state.chosenColor];
-        return preparedArrayOfSixColors;
+        const preparedArrayOfSixColors = [...slicedArrayOfSixColors, chosenColor];
+        const finalColors = this.onFinalColors(preparedArrayOfSixColors, 6);
+        return finalColors;
+    }
+
+    onFinalColors(colors, size) {
+        if (colors.length === 0) {
+            return
+        }
+        const preparedColors = [];
+
+        while (preparedColors.length <= size) {
+            const colorsToDraw = colors.filter((color) => !preparedColors.includes(color));
+            const randomColor = colorsToDraw[Math.floor(Math.random() * (colorsToDraw.length))];
+
+            if (!preparedColors.includes(randomColor)) {
+                preparedColors.push(randomColor);
+            }
+        }
+        return preparedColors;
+
     }
 
     render() {
