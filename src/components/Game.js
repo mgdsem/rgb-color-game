@@ -14,12 +14,15 @@ class Game extends Component {
         this.onHard = this.onHard.bind(this);
         this.onCreate3Colors = this.onCreate3Colors.bind(this);
         this.onCreate6Colors = this.onCreate6Colors.bind(this);
+        this.onClickColor = this.onClickColor.bind(this);
 
         this.state = {
             chosenColor: '',
             currentMode: 'hard',
             arrayFor3Colors: [],
-            arrayFor6Colors: []
+            arrayFor6Colors: [],
+            isGameWon: false,
+            isGameRunning: false
         }
     }
 
@@ -38,14 +41,18 @@ class Game extends Component {
         if (this.state.currentMode === 'hard') {
             this.setState({
                 arrayFor6Colors: this.onCreate6Colors(chosenColor),
-                chosenColor: chosenColor
+                chosenColor: chosenColor,
+                isGameWon: false,
+                isGameRunning: false
             })
         };
 
         if (this.state.currentMode === 'easy') {
             this.setState({
                 arrayFor3Colors: this.onCreate3Colors(chosenColor),
-                chosenColor: chosenColor
+                chosenColor: chosenColor,
+                isGameWon: false,
+                isGameRunning: false
             })
         }
     }
@@ -55,7 +62,9 @@ class Game extends Component {
         this.setState({
             currentMode: 'easy',
             chosenColor: chosenColor,
-            arrayFor3Colors: this.onCreate3Colors(chosenColor)
+            arrayFor3Colors: this.onCreate3Colors(chosenColor),
+            isGameWon: false,
+            isGameRunning: false
         });
 
     }
@@ -65,7 +74,9 @@ class Game extends Component {
         this.setState({
             currentMode: 'hard',
             chosenColor: chosenColor,
-            arrayFor6Colors: this.onCreate6Colors(chosenColor)
+            arrayFor6Colors: this.onCreate6Colors(chosenColor),
+            isGameWon: false,
+            isGameRunning: false
         })
 
     }
@@ -90,7 +101,7 @@ class Game extends Component {
         }
         const preparedColors = [];
 
-        while (preparedColors.length <= size) {
+        while (preparedColors.length < size) {
             const colorsToDraw = colors.filter((color) => !preparedColors.includes(color));
             const randomColor = colorsToDraw[Math.floor(Math.random() * (colorsToDraw.length))];
 
@@ -98,8 +109,40 @@ class Game extends Component {
                 preparedColors.push(randomColor);
             }
         }
-        return preparedColors;
 
+        return preparedColors.map((color) => ({
+            value: color,
+            isVisible: true
+        }))
+    }
+
+    onClickColor(clickedColor) {
+        console.log(clickedColor);
+        if (clickedColor === this.state.chosenColor) {
+            this.setState(prevState => ({
+                isGameWon: true,
+                arrayFor6Colors: prevState.arrayFor6Colors.map(() => ({
+                    value: clickedColor,
+                    isVisible: true
+                })),
+                arrayFor3Colors: prevState.arrayFor3Colors.map(() => ({
+                    value: clickedColor,
+                    isVisible: true
+                }))
+            }))
+        } else {
+            this.setState(prevState => ({
+                isGameRunning: true,
+                arrayFor6Colors: prevState.arrayFor6Colors.map((color) => ({
+                    value: color.value,
+                    isVisible: color.value === clickedColor ? false : color.isVisible
+                })),
+                arrayFor3Colors: prevState.arrayFor3Colors.map((color) => ({
+                    value: color.value,
+                    isVisible: color.value === clickedColor ? false : color.isVisible
+                }))
+            }))
+        }
     }
 
     render() {
@@ -111,11 +154,14 @@ class Game extends Component {
                     onEasy={this.onEasy}
                     onHard={this.onHard}
                     currentMode={this.state.currentMode}
+                    isGameWon={this.state.isGameWon}
+                    isGameRunning={this.state.isGameRunning}
                 />
                 <ColorsWrapper
                     currentMode={this.state.currentMode}
                     sixColors={this.state.arrayFor6Colors}
                     threeColors={this.state.arrayFor3Colors}
+                    onClick={this.onClickColor}
                 />
             </div>
         )

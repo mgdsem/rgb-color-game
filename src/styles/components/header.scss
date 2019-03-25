@@ -9,6 +9,7 @@
         height: 11rem;
         color: $header-down-color;
         padding: 0.5rem;
+        transition: background-color 0.3s ease;
     }
 
     &__title-line {

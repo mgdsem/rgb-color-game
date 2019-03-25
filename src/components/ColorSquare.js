@@ -1,9 +1,16 @@
 import React from 'react';
 
 const ColorSquare = ({
-    color
+    color,
+    onClick,
+    isVisible
 }) => (
-        <div style={{ backgroundColor: color }} className="color-square" ></div>
+        <button
+            style={{ backgroundColor: isVisible ? color : '#232426' }}
+            className="color-square"
+            onClick={() => onClick(color)}
+        >
+        </button>
     )
 
 export default ColorSquare;
