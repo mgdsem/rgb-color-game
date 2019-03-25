@@ -3,3 +3,8 @@
     align-items: center;
     justify-content: center;
 }
+
+@mixin height-padding {
+    height: 12rem;
+    padding: 0.5rem;
+}
