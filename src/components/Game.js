@@ -4,6 +4,7 @@ import Header from './Header';
 import ColorsWrapper from './ColorsWrapper';
 
 import { buildColor, createArrayOfSixColors, createArrayOfThreeColors } from '../helpers/randomArray';
+import { EASY, HARD } from '../constans/levels';
 
 class Game extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class Game extends Component {
 
         this.state = {
             chosenColor: '',
-            currentMode: 'hard',
+            currentMode: HARD,
             arrayFor3Colors: [],
             arrayFor6Colors: [],
             isGameWon: false,
@@ -38,7 +39,7 @@ class Game extends Component {
     onNewColors() {
         const chosenColor = buildColor()
 
-        if (this.state.currentMode === 'hard') {
+        if (this.state.currentMode === HARD) {
             this.setState({
                 arrayFor6Colors: this.onCreate6Colors(chosenColor),
                 chosenColor: chosenColor,
@@ -47,7 +48,7 @@ class Game extends Component {
             })
         };
 
-        if (this.state.currentMode === 'easy') {
+        if (this.state.currentMode === EASY) {
             this.setState({
                 arrayFor3Colors: this.onCreate3Colors(chosenColor),
                 chosenColor: chosenColor,
@@ -60,7 +61,7 @@ class Game extends Component {
     onEasy() {
         const chosenColor = buildColor();
         this.setState({
-            currentMode: 'easy',
+            currentMode: EASY,
             chosenColor: chosenColor,
             arrayFor3Colors: this.onCreate3Colors(chosenColor),
             isGameWon: false,
@@ -72,7 +73,7 @@ class Game extends Component {
     onHard() {
         const chosenColor = buildColor();
         this.setState({
-            currentMode: 'hard',
+            currentMode: HARD,
             chosenColor: chosenColor,
             arrayFor6Colors: this.onCreate6Colors(chosenColor),
             isGameWon: false,

@@ -2,7 +2,8 @@ import React from 'react';
 
 import Button from './Button';
 
-import { generateResultMessage } from '../helpers/messages'
+import { generateResultMessage } from '../helpers/messages';
+import { EASY, HARD } from '../constans/levels';
 
 const Header = ({
     chosenColor,
@@ -21,13 +22,21 @@ const Header = ({
                     <div className="header__title-line">color game</div>
                 </h1>
             </div>
+
             <div className="header__down">
                 <Button additionalClassNames="button__colors" onClick={onNewColors} >
                     {isGameWon ? 'Play again?' : 'New Colors'}
                 </Button>
+
                 <p className="header__middle-text">{generateResultMessage(isGameRunning, isGameWon)}</p>
-                <Button onClick={onEasy} additionalClassNames="button__easy" children="easy" currentMode={currentMode} />
-                <Button onClick={onHard} children="hard" currentMode={currentMode} />
+
+                <Button onClick={onEasy} additionalClassNames="button__easy" isActive={currentMode === EASY}>
+                    Easy
+                </Button>
+
+                <Button onClick={onHard} isActive={currentMode === HARD}>
+                    Hard
+                </Button>
             </div>
         </div>
     )

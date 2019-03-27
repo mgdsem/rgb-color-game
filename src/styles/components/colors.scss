@@ -1,0 +1,28 @@
+.colors {
+    &__wrapper {
+        background-color: $colors-wrapper-color;
+        width: 100%;
+        position: fixed;
+        height: 100vh;
+    }
+
+    &__inner-wrapper {
+        @include flex-center;
+        
+        flex-wrap: wrap;
+        width: 50rem;
+        margin: 0 auto;
+        margin-top: 1.5rem;
+    }
+}
+
+.color-square {
+    width: 12rem;
+    height: 12rem;
+    background-color: black;
+    margin: 1rem;
+    border: 0;
+    border-radius: 2rem;
+    outline: 0;
+    transition: background-color 0.3s ease;
+}
