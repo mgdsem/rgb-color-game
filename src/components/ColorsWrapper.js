@@ -2,7 +2,7 @@ import React from 'react';
 
 import ColorSquare from './ColorSquare';
 
-import { EASY, HARD } from '../constans/levels';
+import { EASY } from '../constans/levels';
 
 const ColorsWrapper = ({
     currentMode,
