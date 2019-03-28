@@ -4,10 +4,10 @@ const Button = ({
     onClick,
     children,
     additionalClassNames,
-    currentMode
+    isActive
 }) => (
         <button
-            className={`button ${additionalClassNames} ${currentMode === children ? 'active' : ''}`}
+            className={`button ${additionalClassNames} ${isActive ? 'active' : ''}`}
             onClick={onClick}
         >
             {children}
