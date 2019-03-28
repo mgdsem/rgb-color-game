@@ -2,30 +2,18 @@ import React from 'react';
 
 import ColorSquare from './ColorSquare';
 
-import { EASY } from '../constans/levels';
-
 const ColorsWrapper = ({
-    currentMode,
-    sixColors,
-    threeColors,
+    colors,
     onClick
-}) => {
-    const colors = currentMode === EASY ? threeColors : sixColors;
-
-    if (colors.length === 0) {
-        return null;
-    }
-
-    return (
+}) => (
         <div className="colors__wrapper" >
             <div className="colors__inner-wrapper">
-                {colors.map((color) => (
-                    <ColorSquare color={color.value} isVisible={color.isVisible} onClick={onClick} />
+                {colors.map((color, index) => (
+                    <ColorSquare key={`${color.value}-${index}`} color={color.value} isVisible={color.isVisible} onClick={onClick} />
                 ))}
             </div>
         </div >
     )
-}
 
 export default ColorsWrapper;
 
